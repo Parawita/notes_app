@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notesapp/widgets/custom_add_bottom.dart';
 import 'package:notesapp/widgets/custom_text_feild.dart';
 
 class AbbModelBottomShett extends StatelessWidget {
@@ -23,6 +24,8 @@ class AbbModelBottomShett extends StatelessWidget {
             ss: "Content",
             maxlines: 5,
           ),
+          const SizedBox(height: 100),
+          const CustomAddBottom(),
         ],
       ),
     );
