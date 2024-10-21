@@ -10,15 +10,18 @@ class HomeVeiwBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
+    return Padding(
       padding: EdgeInsets.all(24.0),
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 35,
           ),
-          CustomHomeVewiAppBar(),
-          Expanded(child: NotesitemBulder())
+          CustomHomeVewiAppBar(
+            ss: 'Notes',
+            ico: (Icons.search),
+          ),
+          const Expanded(child: NotesitemBulder())
         ],
       ),
     );

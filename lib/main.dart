@@ -12,7 +12,8 @@ class NotesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      routes: {NooteApp.id: (context) => NotesApp()},
+      debugShowCheckedModeBanner: false,
+      routes: {EditNote.id: (context) => const EditNote()},
       theme: ThemeData(
         brightness: Brightness.dark,
         fontFamily: 'Poppins',

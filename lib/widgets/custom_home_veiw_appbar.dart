@@ -3,21 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:notesapp/widgets/custom_search_icon.dart';
 
 class CustomHomeVewiAppBar extends StatelessWidget {
-  const CustomHomeVewiAppBar({super.key});
-
+  CustomHomeVewiAppBar({required this.ss, required this.ico});
+  String ss;
+  IconData ico;
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       children: [
         Text(
-          "Notes",
-          style: TextStyle(
+          ss,
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 24,
           ),
         ),
-        Spacer(),
-        CustomSearchIcon(),
+        const Spacer(),
+        CustomSearchIcon(
+          ic: ico,
+        ),
       ],
     );
   }
