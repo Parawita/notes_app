@@ -18,10 +18,10 @@ class EditNote extends StatelessWidget {
             ),
             CustomHomeVewiAppBar(
               ss: "Edite",
-              ico: (Icons.arrow_right_alt_outlined),
+              ico: (Icons.check),
             ),
             const SizedBox(
-              height: 40,
+              height: 50,
             ),
             CustomTextField(ss: 'Title'),
             const SizedBox(
