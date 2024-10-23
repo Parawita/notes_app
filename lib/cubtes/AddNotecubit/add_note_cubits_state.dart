@@ -7,7 +7,7 @@ class AddNoteLoding extends AddNoteState {}
 class AddNoteScssues extends AddNoteState {}
 
 class AddNoteFaild extends AddNoteState {
-  final String erorr;
+  final String error;
 
-  AddNoteFaild({required this.erorr});
+  AddNoteFaild({required this.error});
 }
