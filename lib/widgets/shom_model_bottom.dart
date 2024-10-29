@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notesapp/Models/note_model.dart';
 import 'package:notesapp/cubtes/AddNotecubit/add.note.cubit.dart';
 import 'package:notesapp/cubtes/AddNotecubit/add_note_cubits_state.dart';
 import 'package:notesapp/widgets/custom_add_bottom.dart';
@@ -11,8 +12,12 @@ class AbbModelBottomShett extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16), child: NoteFormState());
+    return BlocProvider(
+      create: (context) => AddNoteCubit(),
+      child: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: NoteFormState()),
+    );
   }
 }
 
@@ -70,6 +75,13 @@ class _NoteFormStateState extends State<NoteFormState> {
                 CustomAddBottom(onTap: () {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
+                    NoteModel newNote = NoteModel(
+                      cololr: Colors.blue.value,
+                      title: title!,
+                      subtitel: subtitle!,
+                      date: DateTime.now().toString(),
+                    );
+                    BlocProvider.of<AddNoteCubit>(context).addNote(newNote);
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                     setState(() {});
