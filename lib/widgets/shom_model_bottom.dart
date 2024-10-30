@@ -13,11 +13,7 @@ class AbbModelBottomShett extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AddNoteCubit(),
-      child: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: NoteFormState()),
-    );
+        create: (context) => AddNoteCubit(), child: NoteFormState());
   }
 }
 
@@ -47,47 +43,50 @@ class _NoteFormStateState extends State<NoteFormState> {
       builder: (context, state) {
         return ModalProgressHUD(
           inAsyncCall: state is AddNoteLoding ? true : false,
-          child: Form(
-            key: formKey,
-            autovalidateMode: autovalidateMode,
-            child: ListView(
-              children: [
-                const SizedBox(
-                  height: 40,
-                ),
-                CustomTextField(
-                  onsaved: (data) {
-                    title = data;
-                  },
-                  ss: "Title",
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                CustomTextField(
-                  onsaved: (data) {
-                    subtitle = data;
-                  },
-                  ss: "Content",
-                  maxlines: 5,
-                ),
-                const SizedBox(height: 100),
-                CustomAddBottom(onTap: () {
-                  if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-                    NoteModel newNote = NoteModel(
-                      cololr: Colors.blue.value,
-                      title: title!,
-                      subtitel: subtitle!,
-                      date: DateTime.now().toString(),
-                    );
-                    BlocProvider.of<AddNoteCubit>(context).addNote(newNote);
-                  } else {
-                    autovalidateMode = AutovalidateMode.always;
-                    setState(() {});
-                  }
-                }),
-              ],
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Form(
+              key: formKey,
+              autovalidateMode: autovalidateMode,
+              child: ListView(
+                children: [
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  CustomTextField(
+                    onsaved: (data) {
+                      title = data;
+                    },
+                    ss: "Title",
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  CustomTextField(
+                    onsaved: (data) {
+                      subtitle = data;
+                    },
+                    ss: "Content",
+                    maxlines: 5,
+                  ),
+                  const SizedBox(height: 100),
+                  CustomAddBottom(onTap: () {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+                      NoteModel newNote = NoteModel(
+                        cololr: Colors.blue.value,
+                        title: title!,
+                        subtitel: subtitle!,
+                        date: DateTime.now().toString(),
+                      );
+                      BlocProvider.of<AddNoteCubit>(context).addNote(newNote);
+                    } else {
+                      autovalidateMode = AutovalidateMode.always;
+                      setState(() {});
+                    }
+                  }),
+                ],
+              ),
             ),
           ),
         );
