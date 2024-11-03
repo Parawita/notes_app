@@ -43,49 +43,54 @@ class _NoteFormStateState extends State<NoteFormState> {
       builder: (context, state) {
         return ModalProgressHUD(
           inAsyncCall: state is AddNoteLoding ? true : false,
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Form(
-              key: formKey,
-              autovalidateMode: autovalidateMode,
-              child: ListView(
-                children: [
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  CustomTextField(
-                    onsaved: (data) {
-                      title = data;
-                    },
-                    ss: "Title",
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  CustomTextField(
-                    onsaved: (data) {
-                      subtitle = data;
-                    },
-                    ss: "Content",
-                    maxlines: 5,
-                  ),
-                  const SizedBox(height: 100),
-                  CustomAddBottom(onTap: () {
-                    if (formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
-                      NoteModel newNote = NoteModel(
-                        cololr: Colors.blue.value,
-                        title: title!,
-                        subtitel: subtitle!,
-                        date: DateTime.now().toString(),
-                      );
-                      BlocProvider.of<AddNoteCubit>(context).addNote(newNote);
-                    } else {
-                      autovalidateMode = AutovalidateMode.always;
-                      setState(() {});
-                    }
-                  }),
-                ],
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(
+                  left: 16,
+                  right: 16,
+                  bottom: MediaQuery.of(context).viewInsets.bottom + 15),
+              child: Form(
+                key: formKey,
+                autovalidateMode: autovalidateMode,
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    CustomTextField(
+                      onsaved: (data) {
+                        title = data;
+                      },
+                      ss: "Title",
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    CustomTextField(
+                      onsaved: (data) {
+                        subtitle = data;
+                      },
+                      ss: "Content",
+                      maxlines: 5,
+                    ),
+                    const SizedBox(height: 100),
+                    CustomAddBottom(onTap: () {
+                      if (formKey.currentState!.validate()) {
+                        formKey.currentState!.save();
+                        NoteModel newNote = NoteModel(
+                          cololr: Colors.blue.value,
+                          title: title!,
+                          subtitel: subtitle!,
+                          date: DateTime.now().toString(),
+                        );
+                        BlocProvider.of<AddNoteCubit>(context).addNote(newNote);
+                      } else {
+                        autovalidateMode = AutovalidateMode.always;
+                        setState(() {});
+                      }
+                    }),
+                  ],
+                ),
               ),
             ),
           ),
