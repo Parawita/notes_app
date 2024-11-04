@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:notesapp/Models/note_model.dart';
-import 'package:notesapp/main.dart';
-import 'package:notesapp/views/notes_veiw.dart';
 import 'package:notesapp/widgets/home_veiw_body.dart';
-import 'package:notesapp/widgets/note_item.dart';
 import 'package:notesapp/widgets/shom_model_bottom.dart';
 
-class HomeVeiw extends StatelessWidget {
+class HomeVeiw extends StatefulWidget {
   HomeVeiw({super.key});
+
+  @override
+  State<HomeVeiw> createState() => _HomeVeiwState();
+}
+
+class _HomeVeiwState extends State<HomeVeiw> {
+  @override
+  void initState() {
+    super
+        .initState(); // Ensure this is called without fetching notes again here
+  }
 
   @override
   Widget build(BuildContext context) {

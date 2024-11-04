@@ -84,6 +84,7 @@ class _NoteFormStateState extends State<NoteFormState> {
                           date: DateTime.now().toString(),
                         );
                         BlocProvider.of<AddNoteCubit>(context).addNote(newNote);
+                        Navigator.pop(context);
                       } else {
                         autovalidateMode = AutovalidateMode.always;
                         setState(() {});
