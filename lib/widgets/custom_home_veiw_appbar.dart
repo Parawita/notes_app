@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:notesapp/widgets/custom_search_icon.dart';
 
 class CustomHomeVewiAppBar extends StatelessWidget {
-  CustomHomeVewiAppBar({required this.ss, required this.ico});
+  CustomHomeVewiAppBar({required this.ss, required this.ico, this.ontap});
   String ss;
   IconData ico;
+  final void Function()? ontap;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -20,6 +21,7 @@ class CustomHomeVewiAppBar extends StatelessWidget {
         const Spacer(),
         CustomSearchIcon(
           ic: ico,
+          ontap: ontap,
         ),
       ],
     );
