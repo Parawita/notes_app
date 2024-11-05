@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notesapp/Models/note_model.dart';
 import 'package:notesapp/cubtes/AddNotecubit/add.note.cubit.dart';
 import 'package:notesapp/cubtes/AddNotecubit/add_note_cubits_state.dart';
+import 'package:notesapp/cubtes/AddNotecubit/notesCubit/notes_cubit.dart';
 import 'package:notesapp/widgets/custom_add_bottom.dart';
 import 'package:notesapp/widgets/custom_text_feild.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -85,6 +86,7 @@ class _NoteFormStateState extends State<NoteFormState> {
                         );
                         BlocProvider.of<AddNoteCubit>(context).addNote(newNote);
                         Navigator.pop(context);
+                        BlocProvider.of<NotesCubit>(context).fetchALlNotes();
                       } else {
                         autovalidateMode = AutovalidateMode.always;
                         setState(() {});
