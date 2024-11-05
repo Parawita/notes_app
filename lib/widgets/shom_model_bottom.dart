@@ -74,6 +74,10 @@ class _NoteFormStateState extends State<NoteFormState> {
                       ss: "Content",
                       maxlines: 5,
                     ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    ColorsItemListBulder(),
                     const SizedBox(height: 100),
                     CustomAddBottom(onTap: () {
                       if (formKey.currentState!.validate()) {
@@ -99,6 +103,73 @@ class _NoteFormStateState extends State<NoteFormState> {
           ),
         );
       },
+    );
+  }
+}
+
+class ColorItem extends StatelessWidget {
+  const ColorItem({super.key, required this.isActive, required this.color});
+  final bool isActive;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return isActive
+        ? CircleAvatar(
+            radius: 28,
+            backgroundColor: Colors.white,
+            child: CircleAvatar(
+              radius: 25,
+              backgroundColor: color,
+            ))
+        : CircleAvatar(
+            radius: 28,
+            backgroundColor: color,
+          );
+  }
+}
+
+class ColorsItemListBulder extends StatefulWidget {
+  const ColorsItemListBulder({super.key});
+
+  @override
+  State<ColorsItemListBulder> createState() => _ColorsItemListBulderState();
+}
+
+List<Color> colors = const [
+  Color.fromARGB(255, 204, 180, 255),
+  Color(0xffFFB86F),
+  Color(0xffA5931D),
+  Color.fromARGB(255, 248, 88, 192),
+  Color(0xffBA5C12),
+];
+
+class _ColorsItemListBulderState extends State<ColorsItemListBulder> {
+  int currentIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 28 * 2,
+      child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: colors.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 9),
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    currentIndex = index;
+                  });
+                  BlocProvider.of<AddNoteCubit>(context).color = colors[index];
+                },
+                child: ColorItem(
+                  color: colors[index],
+                  isActive: currentIndex == index,
+                ),
+              ),
+            );
+          }),
     );
   }
 }

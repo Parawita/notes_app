@@ -14,6 +14,7 @@ class NotesitemBulder extends StatelessWidget {
       builder: (context, state) {
         List<NoteModel> notes =
             BlocProvider.of<NotesCubit>(context).Notes ?? [];
+        notes = notes.reversed.toList();
         return ListView.builder(
             itemCount: notes.length,
             itemBuilder: (context, index) {
